@@ -1,2 +1,57 @@
 # File Project1
 # author Charles Leavitt
+
+import math
+
+#import matplotlib.pyplot as plt
+
+# plt.plot([1,2,3,4], [1,4,9,16], 'ro')
+# plt.axis([0, 10, 0, 20])
+# plt.show()
+
+def do_the_maths(n,k,p0):
+    """this computes a sequence...maybe"""
+    #n = 10
+    #k = (3/2)
+    #p0 = (1/2)
+    Pn = []
+    yvals = []
+    Pn.append(p0)
+    for i in range(0,n):
+        Sn = (k) * Pn[i] * (1 - Pn[i])
+        Pn.append(Sn)
+        yvals.append(i)
+    return Pn,yvals
+
+def clean_input(k,p0):
+    """properly formats input if given as fraction"""
+    if "/" in k :
+        nums = k.split('/')
+        k = (float(nums[0]) / float(nums[1]))
+    else:
+        k = float(k)
+
+    if "/" in p0:
+        nums = p0.split('/')
+        p0 = (float(nums[0]) / float(nums[1]))
+    else:
+        p0 = float(p0)
+    return k,p0
+
+def main():
+    n = int(input("enter number of terms 'n': "))
+    k = input("enter value of k: ")
+    p0 = input("enter the value of P0: ")
+
+    k,p0 = clean_input(k,p0)
+
+    xvals,yvals = do_the_maths(n,k,p0)
+
+    print (xvals)
+    print (yvals)
+    # plt.plot(sequence)
+    # plt.show()
+
+
+main()
+
