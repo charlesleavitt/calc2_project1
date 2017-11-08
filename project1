@@ -1,52 +1,60 @@
 # File Project1
-# author Charles Leavitt
+# authors: Charles Leavitt, Simon Buchheit, Emily Wu, Stephanie Huang
+# dependencies: Requires python3, python3-tk and matplotlib.
+#   to install:     sudo apt install python3
+#                   sudo apt install python3-tk
+#                   sudo apt install python3-pip
+#                   sudo pip3 install matplotlib
 
 import matplotlib.pyplot as plt
 
+
 def do_the_maths(n,k,p0):
-    """this computes a sequence...maybe"""
-    Pn = []
-    xvals = []
-    Pn.append(p0)
-    for i in range(0,n):
-        Sn = (k) * Pn[i] * (1 - Pn[i])
-        Pn.append(Sn)
-        xvals.append(i)
-    return Pn,xvals
+    """
+    Purpose: this function computes a sequence of the form: Pn+1 = (k)(Pn)(1-Pn)
+    Input:  n - the number of values to compute
+            k - the constant value
+            p0 - the value of the sequence at P at n = 0
+    Returns: the sequence Pn
+    """
+    Pn = [p0]  # initialize an array to represent a sequence starting with p0
+    for i in range(0,n):                        # loop for n times
+        Pn_plus_1 = (k) * Pn[i] * (1 - Pn[i])   # computes Pn+1 = (k)(Pn)(1-Pn)
+        Pn.append(Pn_plus_1)                    # adds the Pn+1 to sequence
+    return Pn                                   # returns the sequence
 
-def clean_input(k,p0):
-    """properly formats input if given as fraction"""
-    if "/" in k :
-        nums = k.split('/')
-        k = (float(nums[0]) / float(nums[1]))
+
+def clean_input(k1,p0):
+    """Properly formats input if given as fraction, returns values as floats"""
+    if "/" in k1 :
+        nums = k1.split('/')
+        k1 = (float(nums[0]) / float(nums[1]))
     else:
-        k = float(k)
-
+        k1 = float(k1)
     if "/" in p0:
         nums = p0.split('/')
         p0 = (float(nums[0]) / float(nums[1]))
     else:
         p0 = float(p0)
-    return k,p0
+    return k1,p0
+
 
 def main():
-    # n = 10
-    # k = (3 / 2)
-    # p0 = (1 / 2)
+    """
+    This is the main function that:
+    1) prompts the user for values
+    2) call the function to compute the sequence of the values
+    3) plots the sequence
+    """
+    print("values can entered as: 1.5 or 3/2")
+    n = int(input("enter number of terms 'n': "))   # prompt user for n value
+    k = input("enter value for k: ")                # prompt user for k value
+    p0 = input("enter the value of P0: ")           # prompt user for P0 value
+    k1,p0 = clean_input(k,p0)           # handles values given as fractions
+    sequence = do_the_maths(n,k1,p0)    # compute the sequence
+    print (sequence)                    # print number value of sequence
+    plt.plot(sequence, 'bo')            # graphs the sequence
+    plt.show()                          # displays the sequence graph
 
-    n = int(input("enter number of terms 'n': "))
-    k = input("enter value of k: ")
-    p0 = input("enter the value of P0: ")
-
-    k,p0 = clean_input(k,p0)
-
-    yvals,xvals = do_the_maths(n,k,p0)
-
-    print (yvals)
-    print (xvals)
-    plt.plot(yvals, 'o')
-    plt.show()
-
-
-main()
+main()  # runs the code
 
