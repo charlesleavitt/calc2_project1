@@ -1,10 +1,12 @@
-# File Project1
+# File Project1.py
 # authors: Charles Leavitt, Simon Buchheit, Emily Wu, Stephanie Huang
-# dependencies: Requires python3, python3-tk and matplotlib.
+# dependencies: Requires python3, python3-tk, pip,and matplotlib.
 #   to install:     sudo apt install python3
 #                   sudo apt install python3-tk
 #                   sudo apt install python3-pip
 #                   sudo pip3 install matplotlib
+#
+# Usage: python3 project1.py
 
 import matplotlib.pyplot as plt
 
