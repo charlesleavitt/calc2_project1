@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 def do_the_maths(n,k,p0):
     """
-    Purpose: this function computes a sequence of the form: Pn+1 = (k)(Pn)(1-Pn)
+    Purpose: this function computes a sequence of the form: P(n+1) = (k)(Pn)(1-Pn)
     Input:  n - the number of values to compute
             k - the constant value
             p0 - the value of the sequence at P at n = 0
@@ -50,10 +50,13 @@ def main():
     n = int(input("enter number of terms 'n': "))   # prompt user for n value
     k = input("enter value for k: ")                # prompt user for k value
     p0 = input("enter the value of P0: ")           # prompt user for P0 value
+    plt.title(str(n)+ " terms of Sequence: P(n+1) = (k)(Pn)(1-Pn)\nwith k= " + str(k) + " and P0= " + str(p0))
     k1,p0 = clean_input(k,p0)           # handles values given as fractions
     sequence = do_the_maths(n,k1,p0)    # compute the sequence
     print (sequence)                    # print number value of sequence
-    plt.plot(sequence, 'bo')            # graphs the sequence
+    plt.plot(sequence, 'ro')            # graphs the sequence
+    plt.xlabel('X-axis')                # labels
+    plt.ylabel('Y-axis')                # labels
     plt.show()                          # displays the sequence graph
 
 main()  # runs the code
